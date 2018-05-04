@@ -20,6 +20,7 @@ RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash - \
     && rm -rf /var/cache/yum \
     && pip-3.4 install awscli --no-cache-dir \
     && cd /opt \
+    && npm install -g npm@latest \
     && npm install phantomjs-prebuilt \
     && cd /usr/local/bin \
     && ln -s /usr/bin/pydoc3 pydoc \

@@ -12,7 +12,7 @@
 
 # Modified
 
-FROM amazonlinux:1
+FROM amazonlinux:2
 
 RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash - \
     && yum install python34 python34-devel python34-pip python34-setuptools python34-virtualenv nodejs bzip2 fontconfig openssh-clients git -y \
@@ -30,6 +30,16 @@ RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash - \
     && ln -s /usr/bin/virtualenv-3.4 virtualenv \
     && ln -s /opt/node_modules/.bin/phantomjs phantomjs \
     && set -x && \
+    # Install google chrome
+    cat > /etc/yum.repos.d/google-chrome.repo << EOF\n\
+[google-chrome]\n\
+name=google-chrome\n\
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/\$basearch\n\
+enabled=1\n\
+gpgcheck=1\n\
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub\n\
+EOF\n\
+    && yum install google-chrome-stable -y && \
     # Install docker-compose
     # https://docs.docker.com/compose/install/
     DOCKER_COMPOSE_URL=https://github.com$(curl -L https://github.com/docker/compose/releases/latest | grep -Eo 'href="[^"]+docker-compose-Linux-x86_64' | sed 's/^href="//' | head -1) && \

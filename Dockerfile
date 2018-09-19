@@ -47,6 +47,10 @@ VOLUME /var/lib/docker
 
 COPY dockerd-entrypoint.sh /usr/local/bin/
 
+RUN useradd --create-home -s /bin/bash notrootuser
+
+USER notrootuser
+
 ENV PATH="/usr/local/bin:$PATH"
 
 ENV LANG="en_US.utf8"

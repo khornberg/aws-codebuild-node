@@ -47,9 +47,11 @@ VOLUME /var/lib/docker
 
 COPY dockerd-entrypoint.sh /usr/local/bin/
 
-RUN useradd --create-home -s /bin/bash notrootuser
+RUN mv /usr/bin/google-chrome /usr/bin/my-google-chrome
 
-USER notrootuser
+COPY chrome.sh /usr/bin/google-chrome
+
+RUN chmod +x /usr/bin/google-chrome
 
 ENV PATH="/usr/local/bin:$PATH"
 

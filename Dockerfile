@@ -17,10 +17,10 @@ FROM amazonlinux:2
 COPY chrome.repo /etc/yum.repos.d/google-chrome.repo
 
 RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash - \
-    && yum install python34 python34-devel python34-pip python34-setuptools python34-virtualenv nodejs bzip2 fontconfig openssh-clients git -y \
+    && yum install python3 python3-devel python3-pip python3-setuptools nodejs bzip2 fontconfig openssh-clients git tar -y \
     && yum clean all \
     && rm -rf /var/cache/yum \
-    && pip-3.4 install awscli --no-cache-dir \
+    && pip3 install awscli --no-cache-dir \
     && cd /opt \
     && npm install -g npm@latest \
     && npm install phantomjs-prebuilt \
@@ -28,8 +28,8 @@ RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash - \
     && ln -s /usr/bin/pydoc3 pydoc \
     && ln -s /usr/bin/python3 python \
     && ln -s /usr/bin/python3-config python-config \
-    && ln -s /usr/bin/pip-3.4 pip \
-    && ln -s /usr/bin/virtualenv-3.4 virtualenv \
+    && ln -s /usr/bin/pip3 pip \
+    && pip3 install virtualenv \
     && ln -s /opt/node_modules/.bin/phantomjs phantomjs \
     && yum install google-chrome-stable -y \
     && set -x && \

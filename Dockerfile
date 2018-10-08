@@ -47,12 +47,6 @@ VOLUME /var/lib/docker
 
 COPY dockerd-entrypoint.sh /usr/local/bin/
 
-RUN mv /usr/bin/google-chrome /usr/bin/my-google-chrome
-
-COPY chrome.sh /usr/bin/google-chrome
-
-RUN chmod +x /usr/bin/google-chrome
-
 ENV PATH="/usr/local/bin:$PATH"
 
 ENV LANG="en_US.utf8"

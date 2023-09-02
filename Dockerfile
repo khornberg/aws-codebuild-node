@@ -12,7 +12,7 @@
 
 # Modified
 
-FROM amazonlinux:2
+FROM amazonlinux:2023
 
 COPY chrome.repo /etc/yum.repos.d/google-chrome.repo
 
